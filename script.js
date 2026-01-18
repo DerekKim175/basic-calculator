@@ -13,7 +13,7 @@ function updateDisplay(value) {
 let currentNumber = "";
 
 function appendNumber(num) {
-   if (shouldResetScreen) {
+   if (shouldResetScreen || (currentNumber != undefined && currentOperation === null)) {
         resetScreen();
    }
     currentNumber += num;
@@ -28,7 +28,7 @@ function resetScreen() {
 
 function saveNumber(operator) {
     if (currentOperation !== null) {
-        evaluate();
+        calculateResult();
     }
     firstNumber = currentNumber;
     currentOperation = operator;
@@ -60,7 +60,8 @@ function multiply(x, y) {
 
 function divide(x, y) {
 
-    if (b === 0) {
+    if (y === 0) {
+        alert("You cannot divide a number by 0");
         return null;
     }
 
